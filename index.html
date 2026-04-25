@@ -408,7 +408,6 @@ function animate() {
   time += 0.06;
   drawWave();
   animId = requestAnimationFrame(animate);
-}
 
 // Events
 sliderE.addEventListener('input', () => { E = parseFloat(sliderE.value); valE.textContent = E.toFixed(1) + ' eV'; drawCoeff(); });
