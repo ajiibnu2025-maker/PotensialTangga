@@ -1,40 +1,40 @@
 <!doctype html>
 <html lang="id" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visualisasi Persamaan Schrödinger - Potensial Tangga 1D</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-html, body { height: 100%; margin: 0; }
-body { font-family: 'Source Serif 4', Georgia, serif; }
-code, .mono { font-family: 'JetBrains Mono', monospace; }
-.app-wrap { height: 100%; width: 100%; overflow-y: auto; overflow-x: hidden; }
-canvas { image-rendering: auto; }
-.slider-track::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 2px solid #1e293b; }
-.slider-track::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 2px solid #1e293b; }
-.slider-track { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #334155; outline: none; }
-.tab-btn { transition: all 0.2s; }
-.tab-btn.active { background: #f59e0b; color: #0f172a; }
-.card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; }
-.glow { box-shadow: 0 0 30px rgba(245,158,11,0.08); }
-@keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
-.fade-in { animation: fadeIn 0.4s ease-out both; }
-.fade-in-d1 { animation-delay: 0.05s; }
-.fade-in-d2 { animation-delay: 0.1s; }
-.fade-in-d3 { animation-delay: 0.15s; }
-.fade-in-d4 { animation-delay: 0.2s; }
-</style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="bg-[#0f172a] text-slate-200">
+    html, body { height: 100%; margin: 0; }
+    body { font-family: 'Source Serif 4', Georgia, serif; box-sizing: border-box; }
+    code, .mono { font-family: 'JetBrains Mono', monospace; }
+    .app-wrap { height: 100%; width: 100%; overflow-y: auto; overflow-x: hidden; }
+    canvas { image-rendering: auto; }
+    .slider-track::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 2px solid #1e293b; }
+    .slider-track::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #f59e0b; cursor: pointer; border: 2px solid #1e293b; }
+    .slider-track { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #334155; outline: none; }
+    .tab-btn { transition: all 0.2s; }
+    .tab-btn.active { background: #f59e0b; color: #0f172a; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; }
+    .glow { box-shadow: 0 0 30px rgba(245,158,11,0.08); }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.4s ease-out both; }
+    .fade-in-d1 { animation-delay: 0.05s; }
+    .fade-in-d2 { animation-delay: 0.1s; }
+    .fade-in-d3 { animation-delay: 0.15s; }
+    .fade-in-d4 { animation-delay: 0.2s; }
+  </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200">
   <div class="app-wrap" id="app">
    <header class="text-center pt-8 pb-4 px-4 fade-in">
     <h1 id="mainTitle" class="text-3xl md:text-4xl font-bold text-amber-400 mb-1" style="font-family:'Source Serif 4',Georgia,serif;">Potensial Tangga 1D — Persamaan Schrödinger</h1>
     <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">Visualisasi interaktif gelombang kuantum menabrak dinding potensial</p>
-   </header><!-- Controls -->
+   </header>
+   
    <section class="max-w-5xl mx-auto px-4 py-4 fade-in fade-in-d1">
     <div class="card p-5 glow">
      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -49,14 +49,16 @@ canvas { image-rendering: auto; }
        </div>
       </div>
      </div>
-     <div class="mt-4 flex flex-wrap gap-2 items-center"><span class="text-xs text-slate-400 mr-2">Regime:</span> <span id="regimeBadge" class="mono text-xs px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700">E &gt; V₀ — Transmisi Sebagian</span>
+     <div class="mt-4 flex flex-wrap gap-2 items-center"><span class="text-xs text-slate-400 mr-2">Regime:</span> <span id="regimeBadge" class="mono text-xs px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700">E > V₀ — Transmisi Sebagian</span>
      </div>
     </div>
-   </section><!-- Tabs -->
+   </section>
+   
    <section class="max-w-5xl mx-auto px-4 pb-2 fade-in fade-in-d2">
     <div class="flex gap-2 flex-wrap"><button class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 text-slate-300" data-tab="wave">Gelombang ψ(x)</button> <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 text-slate-300" data-tab="coeff">R &amp; T</button> <button class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 text-slate-300" data-tab="explain">Penjelasan</button>
     </div>
-   </section><!-- Wave Tab -->
+   </section>
+   
    <section id="tabWave" class="max-w-5xl mx-auto px-4 pb-6 fade-in fade-in-d3">
     <div class="card p-4 glow">
      <div class="flex gap-3 mb-3 flex-wrap"><label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="chkReal" checked class="accent-amber-400"> <span class="text-cyan-300">Re(ψ)</span></label> <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="chkImag" checked class="accent-amber-400"> <span class="text-pink-400">Im(ψ)</span></label> <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="chkProb" checked class="accent-amber-400"> <span class="text-amber-300">|ψ|²</span></label> <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="chkAnim" checked class="accent-amber-400"> <span class="text-slate-300">Animasi</span></label>
@@ -64,40 +66,34 @@ canvas { image-rendering: auto; }
      <canvas id="canvasWave" class="w-full rounded-lg" style="height:320px; background:#0f172a;"></canvas>
      <p class="text-xs text-slate-500 mt-2 text-center">Garis putus-putus kuning = batas potensial tangga (x=0)</p>
     </div>
-   </section><!-- Coeff Tab -->
+   </section>
+   
    <section id="tabCoeff" class="max-w-5xl mx-auto px-4 pb-6 hidden">
     <div class="card p-4 glow">
      <canvas id="canvasCoeff" class="w-full rounded-lg" style="height:320px; background:#0f172a;"></canvas>
      <div class="grid grid-cols-2 gap-4 mt-4">
       <div class="text-center">
-       <div class="text-3xl font-bold text-cyan-400 mono" id="displayR">
-        0.00
-       </div>
-       <div class="text-xs text-slate-400">
-        Koefisien Refleksi (R)
-       </div>
+       <div class="text-3xl font-bold text-cyan-400 mono" id="displayR">0.00</div>
+       <div class="text-xs text-slate-400">Koefisien Refleksi (R)</div>
       </div>
       <div class="text-center">
-       <div class="text-3xl font-bold text-emerald-400 mono" id="displayT">
-        1.00
-       </div>
-       <div class="text-xs text-slate-400">
-        Koefisien Transmisi (T)
-       </div>
+       <div class="text-3xl font-bold text-emerald-400 mono" id="displayT">1.00</div>
+       <div class="text-xs text-slate-400">Koefisien Transmisi (T)</div>
       </div>
      </div>
      <div class="text-center mt-2"><span class="mono text-xs text-amber-300">R + T = <span id="displaySum">1.00</span></span>
      </div>
     </div>
-   </section><!-- Explain Tab -->
+   </section>
+   
    <section id="tabExplain" class="max-w-5xl mx-auto px-4 pb-10 hidden">
     <div class="card p-6 glow space-y-6 text-slate-300 leading-relaxed text-sm md:text-base">
      <div>
       <h2 class="text-xl font-bold text-amber-400 mb-2">🌊 Analogi Sederhana</h2>
       <p>Bayangkan kamu berdiri di tepi kolam dangkal dan melempar bola ke arah area yang lebih dalam.</p>
       <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-400">
-       <li><strong class="text-cyan-300">E &gt; V₀</strong> — Seperti bola yang masih bisa masuk ke area dalam, tapi sebagian energi gelombang terpantul. Bola melambat tapi tetap lewat.</li>
-       <li><strong class="text-pink-400">E &lt; V₀</strong> — Seperti dinding beton di kolam. Bola memantul. Tapi dalam dunia kuantum, ada "bocoran" kecil menembus dinding (evanescent wave) — sesuatu yang mustahil di fisika klasik!</li>
+       <li><strong class="text-cyan-300">E > V₀</strong> — Seperti bola yang masih bisa masuk ke area dalam, tapi sebagian energi gelombang terpantul. Bola melambat tapi tetap lewat.</li>
+       <li><strong class="text-pink-400">E < V₀</strong> — Seperti dinding beton di kolam. Bola memantul. Tapi dalam dunia kuantum, ada "bocoran" kecil menembus dinding (evanescent wave).</li>
        <li><strong class="text-amber-300">E = V₀</strong> — Bola tepat di ambang batas. Gelombang merambat tapi dengan bilangan gelombang nol di sisi kanan.</li>
       </ul>
      </div>
@@ -107,320 +103,248 @@ canvas { image-rendering: auto; }
       <div class="card p-3 my-2 mono text-sm text-center bg-slate-800">
        ψ(x,t) = Re(ψ) + i · Im(ψ)
       </div>
-      <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-400">
-       <li><span class="text-cyan-300 font-semibold">Re(ψ)</span> — bagian real, menunjukkan osilasi "nyata" gelombang. Seperti posisi tali yang bergetar naik-turun.</li>
-       <li><span class="text-pink-400 font-semibold">Im(ψ)</span> — bagian imajiner, bergeser fase 90° dari bagian real. Seperti bayangan tali yang selalu mendahului atau tertinggal.</li>
-       <li><span class="text-amber-300 font-semibold">|ψ|²</span> — probabilitas menemukan partikel. Ini yang terukur di eksperimen. Re² + Im² = |ψ|².</li>
-      </ul>
-      <p class="mt-2 text-slate-400">Ketika <strong class="text-pink-400">E &lt; V₀</strong>, di daerah II (setelah tangga), gelombang menjadi eksponensial meluruh — tidak ada osilasi. Bagian imajiner menjadi nol, dan hanya ada peluruhan real yang disebut <em>evanescent wave</em>.</p>
-     </div>
-     <div>
-      <h2 class="text-xl font-bold text-amber-400 mb-2">🔬 Rumus Koefisien</h2>
-      <div class="space-y-2 mono text-xs md:text-sm text-slate-400">
-       <p>k₁ = √(2mE)/ℏ &nbsp;&nbsp;(bilangan gelombang daerah I)</p>
-       <p>k₂ = √(2m(E−V₀))/ℏ &nbsp;&nbsp;jika E &gt; V₀</p>
-       <p>κ = √(2m(V₀−E))/ℏ &nbsp;&nbsp;jika E &lt; V₀</p>
-       <div class="card p-3 bg-slate-800 mt-2">
-        <p>E &gt; V₀: &nbsp; R = ((k₁−k₂)/(k₁+k₂))² &nbsp;&nbsp; T = 4k₁k₂/(k₁+k₂)²</p>
-        <p class="mt-1">E &lt; V₀: &nbsp; R = 1 &nbsp; (refleksi total, tapi ada evanescent wave)</p>
-        <p class="mt-1">Selalu: R + T = 1 ✓</p>
-       </div>
-      </div>
-     </div>
-     <div>
-      <h2 class="text-xl font-bold text-amber-400 mb-2">💡 Fakta Menarik</h2>
-      <p class="text-slate-400">Dalam fisika klasik, jika energi kamu cukup (E &gt; V₀), kamu pasti lewat 100%. Tapi dalam mekanika kuantum, selalu ada refleksi sebagian — bahkan ketika energi lebih dari cukup! Sebaliknya, ketika E &lt; V₀, secara klasik mustahil lewat, tapi kuantum membolehkan "bocoran" (tunneling). Inilah keajaiban dunia kuantum.</p>
      </div>
     </div>
    </section>
   </div>
+
   <script>
-// Element SDK setup
-const defaultConfig = {
-  main_title: 'Potensial Tangga 1D — Persamaan Schrödinger',
-  background_color: '#0f172a',
-  surface_color: '#1e293b',
-  text_color: '#e2e8f0',
-  primary_action: '#f59e0b',
-  secondary_action: '#06b6d4'
-};
+  let E = 5, V0 = 3, time = 0, animId = null;
+  const sliderE = document.getElementById('sliderE');
+  const sliderV = document.getElementById('sliderV');
+  const valE = document.getElementById('valE');
+  const valV = document.getElementById('valV');
+  const badge = document.getElementById('regimeBadge');
 
-  mapToCapabilities: (config) => ({
-    recolorables: [
-      { get: () => config.background_color || defaultConfig.background_color, set: v => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-      { get: () => config.surface_color || defaultConfig.surface_color, set: v => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-      { get: () => config.text_color || defaultConfig.text_color, set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-      { get: () => config.primary_action || defaultConfig.primary_action, set: v => { config.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
-      { get: () => config.secondary_action || defaultConfig.secondary_action, set: v => { config.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } }
-    ],
-    borderables: [],
-    fontEditable: { get: () => config.font_family || 'Source Serif 4', set: v => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-    fontSizeable: { get: () => config.font_size || 16, set: v => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
-  }),
-  mapToEditPanelValues: (config) => new Map([
-    ['main_title', config.main_title || defaultConfig.main_title]
-  ])
-});
-
-// Physics
-let E = 5, V0 = 3, time = 0, animId = null;
-const sliderE = document.getElementById('sliderE');
-const sliderV = document.getElementById('sliderV');
-const valE = document.getElementById('valE');
-const valV = document.getElementById('valV');
-const badge = document.getElementById('regimeBadge');
-
-function getCoeffs(e, v) {
-  if (e <= 0.001) return { R: 1, T: 0, k1: 0.001, k2: 0, kappa: Math.sqrt(v), regime: 'sub' };
-  const k1 = Math.sqrt(e);
-  if (e > v) {
-    const k2 = Math.sqrt(e - v);
-    const R = ((k1 - k2) / (k1 + k2)) ** 2;
-    return { R, T: 1 - R, k1, k2, kappa: 0, regime: 'over' };
-  } else if (Math.abs(e - v) < 0.01) {
-    return { R: 1, T: 0, k1, k2: 0, kappa: 0.001, regime: 'equal' };
-  } else {
-    const kappa = Math.sqrt(v - e);
-    return { R: 1, T: 0, k1, k2: 0, kappa, regime: 'sub' };
-  }
-}
-
-function updateBadge(regime) {
-  if (regime === 'over') { badge.textContent = 'E > V₀ — Transmisi Sebagian'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700'; }
-  else if (regime === 'sub') { badge.textContent = 'E < V₀ — Refleksi Total + Evanescent'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-pink-900 text-pink-300 border border-pink-700'; }
-  else { badge.textContent = 'E ≈ V₀ — Ambang Batas'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-amber-900 text-amber-300 border border-amber-700'; }
-}
-
-// Wave canvas
-const cW = document.getElementById('canvasWave');
-const ctxW = cW.getContext('2d');
-const chkReal = document.getElementById('chkReal');
-const chkImag = document.getElementById('chkImag');
-const chkProb = document.getElementById('chkProb');
-const chkAnim = document.getElementById('chkAnim');
-
-function resizeCanvas(canvas) {
-  const r = canvas.getBoundingClientRect();
-  canvas.width = r.width * window.devicePixelRatio;
-  canvas.height = r.height * window.devicePixelRatio;
-}
-
-function drawWave() {
-  resizeCanvas(cW);
-  const w = cW.width, h = cW.height;
-  const ctx = ctxW;
-  ctx.clearRect(0, 0, w, h);
-
-  const c = getCoeffs(E, V0);
-  updateBadge(c.regime);
-
-  const midX = w * 0.5;
-  const midY = h * 0.5;
-  const amp = h * 0.25;
-  const t = chkAnim.checked ? time : 0;
-
-  // Draw potential step
-  ctx.fillStyle = 'rgba(245,158,11,0.07)';
-  ctx.fillRect(midX, 0, w - midX, h);
-  ctx.setLineDash([6, 6]);
-  ctx.strokeStyle = '#f59e0b';
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(midX, 0); ctx.lineTo(midX, h); ctx.stroke();
-  ctx.setLineDash([]);
-
-  // Labels
-  ctx.font = / ${12 * devicePixelRatio}px JetBrains Mono;
-  ctx.fillStyle = '#94a3b8';
-  ctx.fillText('Daerah I (V=0)', 20 * devicePixelRatio, 20 * devicePixelRatio);
-  ctx.fillText('Daerah II (V=V₀)', midX + 10 * devicePixelRatio, 20 * devicePixelRatio);
-  ctx.fillText('x = 0', midX + 4, h - 10 * devicePixelRatio);
-
-  // Reflection coefficient for wave amplitude
-  const rCoeff = (c.regime === 'over') ? (c.k1 - c.k2) / (c.k1 + c.k2) : 1;
-  const tCoeff = (c.regime === 'over') ? 2 * c.k1 / (c.k1 + c.k2) : 0;
-
-  const nPts = Math.round(w);
-  const scale = 10 / w; // x range mapped
-
-  function waveFn(px) {
-    const x = (px - midX) * scale;
-    let re, im;
-    if (px < midX) {
-      // Region I: incident + reflected
-      const phase1 = c.k1 * x / scale * 0.15 - t;
-      const phaseR = -c.k1 * x / scale * 0.15 - t;
-      re = Math.cos(phase1) + rCoeff * Math.cos(phaseR);
-      im = Math.sin(phase1) + rCoeff * Math.sin(phaseR);
+  function getCoeffs(e, v) {
+    if (e <= 0.001) return { R: 1, T: 0, k1: 0.001, k2: 0, kappa: Math.sqrt(v), regime: 'sub' };
+    const k1 = Math.sqrt(e);
+    if (e > v) {
+      const k2 = Math.sqrt(e - v);
+      const R = ((k1 - k2) / (k1 + k2)) ** 2;
+      return { R, T: 1 - R, k1, k2, kappa: 0, regime: 'over' };
+    } else if (Math.abs(e - v) < 0.01) {
+      return { R: 1, T: 0, k1, k2: 0, kappa: 0.001, regime: 'equal' };
     } else {
-      if (c.regime === 'over') {
-        const phase2 = c.k2 * x / scale * 0.15 - t;
-        re = tCoeff * Math.cos(phase2);
-        im = tCoeff * Math.sin(phase2);
-      } else {
-        // Evanescent
-        const decay = Math.exp(-c.kappa * x / scale * 0.15);
-        // For E < V0, reflected wave has phase shift, transmitted is evanescent
-        const tEv = 2 * c.k1 / (c.k1 + c.kappa); // amplitude
-        re = tEv * decay * Math.cos(-t);
-        im = tEv * decay * Math.sin(-t);
-      }
+      const kappa = Math.sqrt(v - e);
+      return { R: 1, T: 0, k1, k2: 0, kappa, regime: 'sub' };
     }
-    return { re, im, prob: re * re + im * im };
   }
 
-  function drawLine(color, fn) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2.5 * devicePixelRatio;
-    ctx.beginPath();
-    for (let px = 0; px < nPts; px++) {
-      const v = fn(px);
-      const y = midY - v * amp;
-      if (px === 0) ctx.moveTo(px, y); else ctx.lineTo(px, y);
-    }
-    ctx.stroke();
+  function updateBadge(regime) {
+    if (regime === 'over') { badge.textContent = 'E > V₀ — Transmisi Sebagian'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700'; }
+    else if (regime === 'sub') { badge.textContent = 'E < V₀ — Refleksi Total + Evanescent'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-pink-900 text-pink-300 border border-pink-700'; }
+    else { badge.textContent = 'E ≈ V₀ — Ambang Batas'; badge.className = 'mono text-xs px-3 py-1 rounded-full bg-amber-900 text-amber-300 border border-amber-700'; }
   }
 
-  if (chkProb.checked) drawLine('rgba(251,191,36,0.6)', px => waveFn(px).prob / 4);
-  if (chkReal.checked) drawLine('#22d3ee', px => waveFn(px).re / 2);
-  if (chkImag.checked) drawLine('#f472b6', px => waveFn(px).im / 2);
+  const cW = document.getElementById('canvasWave');
+  const ctxW = cW.getContext('2d');
+  const chkReal = document.getElementById('chkReal');
+  const chkImag = document.getElementById('chkImag');
+  const chkProb = document.getElementById('chkProb');
+  const chkAnim = document.getElementById('chkAnim');
 
-  // Zero line
-  ctx.strokeStyle = 'rgba(148,163,184,0.15)';
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke();
-}
-
-// Coefficient canvas
-const cC = document.getElementById('canvasCoeff');
-const ctxC = cC.getContext('2d');
-
-function drawCoeff() {
-  resizeCanvas(cC);
-  const w = cC.width, h = cC.height;
-  const ctx = ctxC;
-  ctx.clearRect(0, 0, w, h);
-
-  const pad = 50 * devicePixelRatio;
-  const gw = w - pad * 2, gh = h - pad * 2;
-
-  // Axes
-  ctx.strokeStyle = '#475569';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(pad, pad); ctx.lineTo(pad, pad + gh); ctx.lineTo(pad + gw, pad + gh);
-  ctx.stroke();
-
-  ctx.font = ${11 * devicePixelRatio}px JetBrains Mono;
-  ctx.fillStyle = '#94a3b8';
-  ctx.fillText('E / V₀', pad + gw / 2 - 20 * devicePixelRatio, h - 5 * devicePixelRatio);
-  ctx.fillText('1.0', pad - 30 * devicePixelRatio, pad + 4 * devicePixelRatio);
-  ctx.fillText('0', pad - 15 * devicePixelRatio, pad + gh + 4 * devicePixelRatio);
-
-  // Grid lines
-  ctx.strokeStyle = 'rgba(71,85,105,0.3)';
-  ctx.setLineDash([3, 3]);
-  for (let i = 1; i <= 4; i++) {
-    const y = pad + gh - (i / 4) * gh;
-    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad + gw, y); ctx.stroke();
-    ctx.fillText((i / 4).toFixed(2), pad - 35 * devicePixelRatio, y + 4);
-  }
-  // X ticks
-  for (let i = 0; i <= 4; i++) {
-    const x = pad + (i / 4) * gw;
-    const ratio = i / 4 * 3;
-    ctx.beginPath(); ctx.moveTo(x, pad + gh); ctx.lineTo(x, pad + gh + 6 * devicePixelRatio); ctx.stroke();
-    ctx.fillText(ratio.toFixed(1), x - 8 * devicePixelRatio, pad + gh + 18 * devicePixelRatio);
-  }
-  ctx.setLineDash([]);
-
-  // Plot R and T curves for current V0
-  const nSamples = Math.round(gw);
-  const maxRatio = 3;
-
-  function plotCurve(color, fn) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 3 * devicePixelRatio;
-    ctx.beginPath();
-    for (let i = 0; i < nSamples; i++) {
-      const ratio = (i / nSamples) * maxRatio;
-      const eVal = ratio * V0 || 0.001;
-      const val = fn(eVal, V0);
-      const x = pad + (i / nSamples) * gw;
-      const y = pad + gh - val * gh;
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
+  function resizeCanvas(canvas) {
+    const r = canvas.getBoundingClientRect();
+    canvas.width = r.width * window.devicePixelRatio;
+    canvas.height = r.height * window.devicePixelRatio;
   }
 
-  plotCurve('#22d3ee', (e, v) => getCoeffs(e, v).R);
-  plotCurve('#34d399', (e, v) => getCoeffs(e, v).T);
+  function drawWave() {
+    resizeCanvas(cW);
+    const w = cW.width, h = cW.height;
+    const ctx = ctxW;
+    ctx.clearRect(0, 0, w, h);
 
-  // Current position marker
-  const curRatio = V0 > 0 ? E / V0 : E;
-  const markerX = pad + (curRatio / maxRatio) * gw;
-  if (markerX >= pad && markerX <= pad + gw) {
-    ctx.setLineDash([4, 4]);
+    const c = getCoeffs(E, V0);
+    updateBadge(c.regime);
+
+    const midX = w * 0.5;
+    const midY = h * 0.5;
+    const amp = h * 0.25;
+    const t = chkAnim.checked ? time : 0;
+
+    ctx.fillStyle = 'rgba(245,158,11,0.07)';
+    ctx.fillRect(midX, 0, w - midX, h);
+    ctx.setLineDash([6, 6]);
     ctx.strokeStyle = '#f59e0b';
     ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(markerX, pad); ctx.lineTo(markerX, pad + gh); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(midX, 0); ctx.lineTo(midX, h); ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = '#f59e0b';
-    ctx.fillText(E/V₀=${curRatio.toFixed(2)}, markerX + 4, pad + 14 * devicePixelRatio);
+
+    ctx.font = `${12 * devicePixelRatio}px JetBrains Mono`;
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillText('Daerah I (V=0)', 20 * devicePixelRatio, 20 * devicePixelRatio);
+    ctx.fillText('Daerah II (V=V₀)', midX + 10 * devicePixelRatio, 20 * devicePixelRatio);
+    ctx.fillText('x = 0', midX + 4, h - 10 * devicePixelRatio);
+
+    const rCoeff = (c.regime === 'over') ? (c.k1 - c.k2) / (c.k1 + c.k2) : 1;
+    const tCoeff = (c.regime === 'over') ? 2 * c.k1 / (c.k1 + c.k2) : 0;
+
+    const nPts = Math.round(w);
+    const scale = 10 / w;
+
+    function waveFn(px) {
+      const x = (px - midX) * scale;
+      let re, im;
+      if (px < midX) {
+        const phase1 = c.k1 * x / scale * 0.15 - t;
+        const phaseR = -c.k1 * x / scale * 0.15 - t;
+        re = Math.cos(phase1) + rCoeff * Math.cos(phaseR);
+        im = Math.sin(phase1) + rCoeff * Math.sin(phaseR);
+      } else {
+        if (c.regime === 'over') {
+          const phase2 = c.k2 * x / scale * 0.15 - t;
+          re = tCoeff * Math.cos(phase2);
+          im = tCoeff * Math.sin(phase2);
+        } else {
+          const decay = Math.exp(-c.kappa * x / scale * 0.15);
+          const tEv = 2 * c.k1 / (c.k1 + c.kappa);
+          re = tEv * decay * Math.cos(-t);
+          im = tEv * decay * Math.sin(-t);
+        }
+      }
+      return { re, im, prob: re * re + im * im };
+    }
+
+    function drawLine(color, fn) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.5 * devicePixelRatio;
+      ctx.beginPath();
+      for (let px = 0; px < nPts; px++) {
+        const v = fn(px);
+        const y = midY - v * amp;
+        if (px === 0) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+      }
+      ctx.stroke();
+    }
+
+    if (chkProb.checked) drawLine('rgba(251,191,36,0.6)', px => waveFn(px).prob / 4);
+    if (chkReal.checked) drawLine('#22d3ee', px => waveFn(px).re / 2);
+    if (chkImag.checked) drawLine('#f472b6', px => waveFn(px).im / 2);
+
+    ctx.strokeStyle = 'rgba(148,163,184,0.15)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, midY); ctx.lineTo(w, midY); ctx.stroke();
   }
 
-  // Legend
-  const lx = pad + gw - 100 * devicePixelRatio;
-  ctx.fillStyle = '#22d3ee'; ctx.fillRect(lx, pad + 10, 14 * devicePixelRatio, 3 * devicePixelRatio);
-  ctx.fillStyle = '#94a3b8'; ctx.fillText('R', lx + 18 * devicePixelRatio, pad + 15);
-  ctx.fillStyle = '#34d399'; ctx.fillRect(lx, pad + 26 * devicePixelRatio, 14 * devicePixelRatio, 3 * devicePixelRatio);
-  ctx.fillStyle = '#94a3b8'; ctx.fillText('T', lx + 18 * devicePixelRatio, pad + 30 * devicePixelRatio);
+  const cC = document.getElementById('canvasCoeff');
+  const ctxC = cC.getContext('2d');
 
-  // Update displays
-  const cur = getCoeffs(E, V0);
-  document.getElementById('displayR').textContent = cur.R.toFixed(4);
-  document.getElementById('displayT').textContent = cur.T.toFixed(4);
-  document.getElementById('displaySum').textContent = (cur.R + cur.T).toFixed(4);
-}
+  function drawCoeff() {
+    resizeCanvas(cC);
+    const w = cC.width, h = cC.height;
+    const ctx = ctxC;
+    ctx.clearRect(0, 0, w, h);
 
-// Animation loop
-function animate() {
-  time += 0.06;
-  drawWave();
-  animId = requestAnimationFrame(animate);
-}
+    const pad = 50 * devicePixelRatio;
+    const gw = w - pad * 2, gh = h - pad * 2;
 
-// Events
-sliderE.addEventListener('input', () => { E = parseFloat(sliderE.value); valE.textContent = E.toFixed(1) + ' eV'; drawCoeff(); });
-sliderV.addEventListener('input', () => { V0 = parseFloat(sliderV.value); valV.textContent = V0.toFixed(1) + ' eV'; drawCoeff(); });
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad, pad); ctx.lineTo(pad, pad + gh); ctx.lineTo(pad + gw, pad + gh);
+    ctx.stroke();
 
-// Tabs
-const tabs = document.querySelectorAll('.tab-btn');
-const tabWave = document.getElementById('tabWave');
-const tabCoeff = document.getElementById('tabCoeff');
-const tabExplain = document.getElementById('tabExplain');
+    ctx.font = `${11 * devicePixelRatio}px JetBrains Mono`;
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillText('E / V₀', pad + gw / 2 - 20 * devicePixelRatio, h - 5 * devicePixelRatio);
+    ctx.fillText('1.0', pad - 30 * devicePixelRatio, pad + 4 * devicePixelRatio);
+    ctx.fillText('0', pad - 15 * devicePixelRatio, pad + gh + 4 * devicePixelRatio);
 
-tabs.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabs.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const t = btn.dataset.tab;
-    tabWave.classList.toggle('hidden', t !== 'wave');
-    tabCoeff.classList.toggle('hidden', t !== 'coeff');
-    tabExplain.classList.toggle('hidden', t !== 'explain');
-    if (t === 'coeff') drawCoeff();
+    ctx.strokeStyle = 'rgba(71,85,105,0.3)';
+    ctx.setLineDash([3, 3]);
+    for (let i = 1; i <= 4; i++) {
+      const y = pad + gh - (i / 4) * gh;
+      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad + gw, y); ctx.stroke();
+      ctx.fillText((i / 4).toFixed(2), pad - 35 * devicePixelRatio, y + 4);
+    }
+    for (let i = 0; i <= 4; i++) {
+      const x = pad + (i / 4) * gw;
+      const ratio = i / 4 * 3;
+      ctx.beginPath(); ctx.moveTo(x, pad + gh); ctx.lineTo(x, pad + gh + 6 * devicePixelRatio); ctx.stroke();
+      ctx.fillText(ratio.toFixed(1), x - 8 * devicePixelRatio, pad + gh + 18 * devicePixelRatio);
+    }
+    ctx.setLineDash([]);
+
+    const nSamples = Math.round(gw);
+    const maxRatio = 3;
+
+    function plotCurve(color, fn) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3 * devicePixelRatio;
+      ctx.beginPath();
+      for (let i = 0; i < nSamples; i++) {
+        const ratio = (i / nSamples) * maxRatio;
+        const eVal = ratio * V0 || 0.001;
+        const val = fn(eVal, V0);
+        const x = pad + (i / nSamples) * gw;
+        const y = pad + gh - val * gh;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    plotCurve('#22d3ee', (e, v) => getCoeffs(e, v).R);
+    plotCurve('#34d399', (e, v) => getCoeffs(e, v).T);
+
+    const curRatio = V0 > 0 ? E / V0 : E;
+    const markerX = pad + (curRatio / maxRatio) * gw;
+    if (markerX >= pad && markerX <= pad + gw) {
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(markerX, pad); ctx.lineTo(markerX, pad + gh); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText(`E/V₀=${curRatio.toFixed(2)}`, markerX + 4, pad + 14 * devicePixelRatio);
+    }
+
+    const lx = pad + gw - 100 * devicePixelRatio;
+    ctx.fillStyle = '#22d3ee'; ctx.fillRect(lx, pad + 10, 14 * devicePixelRatio, 3 * devicePixelRatio);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText('R', lx + 18 * devicePixelRatio, pad + 15);
+    ctx.fillStyle = '#34d399'; ctx.fillRect(lx, pad + 26 * devicePixelRatio, 14 * devicePixelRatio, 3 * devicePixelRatio);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText('T', lx + 18 * devicePixelRatio, pad + 30 * devicePixelRatio);
+
+    const cur = getCoeffs(E, V0);
+    document.getElementById('displayR').textContent = cur.R.toFixed(4);
+    document.getElementById('displayT').textContent = cur.T.toFixed(4);
+    document.getElementById('displaySum').textContent = (cur.R + cur.T).toFixed(4);
+  }
+
+  function animate() {
+    time += 0.06;
+    drawWave();
+    animId = requestAnimationFrame(animate);
+  }
+
+  sliderE.addEventListener('input', () => { E = parseFloat(sliderE.value); valE.textContent = E.toFixed(1) + ' eV'; drawCoeff(); });
+  sliderV.addEventListener('input', () => { V0 = parseFloat(sliderV.value); valV.textContent = V0.toFixed(1) + ' eV'; drawCoeff(); });
+
+  const tabs = document.querySelectorAll('.tab-btn');
+  const tabWave = document.getElementById('tabWave');
+  const tabCoeff = document.getElementById('tabCoeff');
+  const tabExplain = document.getElementById('tabExplain');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const t = btn.dataset.tab;
+      tabWave.classList.toggle('hidden', t !== 'wave');
+      tabCoeff.classList.toggle('hidden', t !== 'coeff');
+      tabExplain.classList.toggle('hidden', t !== 'explain');
+      if (t === 'coeff') drawCoeff();
+    });
   });
-});
 
-// Checkboxes trigger redraw
-[chkReal, chkImag, chkProb, chkAnim].forEach(c => c.addEventListener('change', () => {}));
+  [chkReal, chkImag, chkProb, chkAnim].forEach(c => c.addEventListener('change', () => {}));
 
-// Resize
-window.addEventListener('resize', () => { drawCoeff(); });
+  window.addEventListener('resize', () => { drawCoeff(); });
 
-// Init
-animate();
-drawCoeff();
-lucide.createIcons();
-</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f12342ca750a2fd',t:'MTc3NzAwMzI1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  animate();
+  drawCoeff();
+  lucide.createIcons();
+  </script>
+</body>
 </html>
